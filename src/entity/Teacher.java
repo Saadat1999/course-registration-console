@@ -2,7 +2,7 @@ package entity;
 
 import java.util.ArrayList;
 
-public class Teacher extends Alma {
+public class Teacher extends Human {
     private Double salary;
     private final ArrayList<Student> students = new ArrayList<>();
 

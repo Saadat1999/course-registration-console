@@ -1,11 +1,18 @@
 package service;
+
 import entity.Student;
 import entity.Teacher;
+import service.FileUtility.FileUtil;
+
+import java.util.List;
 import java.util.Scanner;
+
+import static service.Database.HUMAN_WRAPPER;
+
 
 public class TeacherService extends AbstractEducationService {
 
-    protected TeacherService() {
+    public TeacherService() {
         super(Database.TEACHERS);
     }
 
@@ -29,7 +36,7 @@ public class TeacherService extends AbstractEducationService {
         Teacher teacher = new Teacher(name, surname, age, email, salary);
 
         list.add(teacher);
-
+        FileUtil.writeObjectToFile(HUMAN_WRAPPER);
         return teacher;
     }
 
@@ -54,7 +61,10 @@ public class TeacherService extends AbstractEducationService {
 
             System.out.println("Do you want to add another student?");
             continueToAdd = new Scanner(System.in).nextLine();
+            FileUtil.writeObjectToFile(HUMAN_WRAPPER);
         }
+
+
 
     }
 
@@ -80,5 +90,7 @@ public class TeacherService extends AbstractEducationService {
             case 5-> addStudentsToTeacher();
         }
     }
+
+
 
 }

@@ -1,6 +1,6 @@
 package entity;
 
-public class Student extends Alma {
+public class Student extends Human {
     private Double scholarship;
 
     public Student(String name, String surname, Integer age, String email, Double scholarship) {
@@ -17,6 +17,6 @@ public class Student extends Alma {
     }
 
     public String toString() {
-        return getName()+" "+getSurname()+"\n"+getAge()+"\n"+getEmail()+"\n"+getScholarship()+"\n";
+        return getName()+" "+getSurname()+", "+getAge()+", "+getEmail()+", "+getScholarship()+".";
     }
 }

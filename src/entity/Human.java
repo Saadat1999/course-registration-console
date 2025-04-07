@@ -1,12 +1,14 @@
 package entity;
 
-public class Alma {
+import java.io.Serializable;
+
+public class Human implements Serializable {
     private String name;
     private String surname;
     private Integer age;
     private String email;
 
-    public Alma(String name, String surname, Integer age, String email) {
+    public Human(String name, String surname, Integer age, String email) {
         this.name = name;
         this.surname = surname;
         this.age = age;

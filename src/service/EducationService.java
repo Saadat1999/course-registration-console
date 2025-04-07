@@ -1,13 +1,16 @@
 package service;
-import entity.Alma;
+import entity.Human;
+import service.proxyServices.StudentServiceProxy;
+import service.proxyServices.TeacherServiceProxy;
+
 import java.util.Scanner;
 
 public interface EducationService {
-    Alma register();
+    Human register();
 
     void showAll();
 
-    Alma search();
+    Human search();
 
     void delete();
 
@@ -35,13 +38,14 @@ public interface EducationService {
 
         int index = new Scanner(System.in).nextInt();
         if(index==1) {
-            return new StudentService();
+            return new StudentServiceProxy(); // call invokes proxy service which has private object of real service inside
         } else if(index==2) {
-            return new TeacherService();
+            return new TeacherServiceProxy();
         } else if(index==3) {
             System.out.println("Exited");
             System.exit(1);
         }
+        System.out.println("No such option");
         return null;
     }
 }
