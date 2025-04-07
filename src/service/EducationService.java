@@ -6,6 +6,8 @@ import service.proxyServices.TeacherServiceProxy;
 import java.util.Scanner;
 
 public interface EducationService {
+
+
     Human register();
 
     void showAll();
@@ -38,9 +40,9 @@ public interface EducationService {
 
         int index = new Scanner(System.in).nextInt();
         if(index==1) {
-            return new StudentServiceProxy(); // call invokes proxy service which has private object of real service inside
+            return ObjectCreator.checkStudent(); // call invokes proxy service which has private object of real service inside
         } else if(index==2) {
-            return new TeacherServiceProxy();
+            return ObjectCreator.checkTeacher();
         } else if(index==3) {
             System.out.println("Exited");
             System.exit(1);

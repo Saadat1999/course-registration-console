@@ -2,10 +2,6 @@ package service;
 import entity.Human;
 import entity.HumanWrapper;
 import service.FileUtility.FileUtil;
-
-import java.io.FileInputStream;
-import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
