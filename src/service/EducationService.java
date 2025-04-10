@@ -1,7 +1,5 @@
 package service;
 import entity.Human;
-import service.proxy.StudentService$Proxy;
-import service.proxy.TeacherService$Proxy;
 
 import java.util.Scanner;
 
@@ -40,9 +38,9 @@ public interface EducationService {
 
         int index = new Scanner(System.in).nextInt();
         if(index==1) {
-            return new StudentService$Proxy(new StudentService());
+            return StudentService.instance(save);
         } else if(index==2) {
-            return new TeacherService$Proxy(new TeacherService());
+            return TeacherService.instance(save);
         } else if(index==3) {
             System.out.println("Exited");
             System.exit(1);

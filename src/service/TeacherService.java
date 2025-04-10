@@ -1,15 +1,21 @@
 package service;
 
+import entity.Human;
 import entity.Student;
 import entity.Teacher;
+import service.proxy.Annotable;
+
 import java.util.Scanner;
 import static service.Database.HUMAN_WRAPPER;
+import static service.proxy.ProxyUtil.save;
 
 public class TeacherService extends AbstractEducationService {
 
-    public TeacherService() {
+    private TeacherService() {
         super(HUMAN_WRAPPER.teacher);
     }
+
+    private static TeacherService instance;
 
     @Override
     public Teacher register() { // stays, special to Teacher
@@ -84,6 +90,64 @@ public class TeacherService extends AbstractEducationService {
         }
     }
 
+    public static TeacherService instance(boolean isSave) {
+        if(instance == null) {
+            if(isSave) {
+                instance = new TeacherService$Proxy(new TeacherService());
+            } else{
+                instance = new TeacherService();
+            }
+        } return instance;
+    }
 
+    private static class TeacherService$Proxy extends TeacherService {
+
+        private final TeacherService teacherService;
+
+        public TeacherService$Proxy(TeacherService teacherService) {
+            this.teacherService = teacherService;
+        }
+
+
+        @Override
+        @Annotable
+        public Teacher register() {
+            Teacher teacher = this.teacherService.register();
+            save("register", TeacherService.class);
+            return teacher;
+        }
+
+        @Override
+        public void showAll() {
+            this.teacherService.showAll();
+        }
+
+        @Override
+        public Human search() {
+            return this.teacherService.search();
+        }
+
+        @Override
+        @Annotable
+        public void delete() {
+            this.teacherService.delete();
+            save("delete", TeacherService.class);
+        }
+
+        @Override
+        public int showMenu() {
+            return this.teacherService.showMenu();
+        }
+        @Override
+        public void addStudentsToTeacher() {
+            this.teacherService.addStudentsToTeacher();
+            save("addStudentsToTeacher", TeacherService.class);
+        }
+
+        @Override
+        public void executeSelectedMenu(int selectedMenu) {
+            this.teacherService.executeSelectedMenu(selectedMenu);
+        }
+    }
 
 }
