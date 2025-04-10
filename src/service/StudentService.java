@@ -1,8 +1,5 @@
 package service;
-import entity.HumanWrapper;
 import entity.Student;
-import service.FileUtility.FileUtil;
-
 import java.util.Scanner;
 
 import static service.Database.HUMAN_WRAPPER;
@@ -12,7 +9,7 @@ public class StudentService extends AbstractEducationService {
 
 
     public StudentService() {
-        super(Database.STUDENTS);
+        super(HUMAN_WRAPPER.students);
     }
 
     @Override
@@ -35,9 +32,6 @@ public class StudentService extends AbstractEducationService {
         Student student = new Student(name, surname, age, email, scholarship);
 
         list.add(student);
-
-        FileUtil.writeObjectToFile(HUMAN_WRAPPER);
-        System.out.println(FileUtil.readObjectFromFile());
         return student;
     }
 

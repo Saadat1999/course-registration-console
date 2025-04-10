@@ -1,11 +1,7 @@
 package service;
 import entity.Human;
-import entity.HumanWrapper;
-import service.FileUtility.FileUtil;
 import java.util.List;
 import java.util.Scanner;
-
-import static service.Database.HUMAN_WRAPPER;
 
 
 public abstract class AbstractEducationService implements EducationService {
@@ -46,7 +42,6 @@ public abstract class AbstractEducationService implements EducationService {
         int index = new Scanner(System.in).nextInt();
         list.remove(index);
         System.out.println("Deleted ✔ \n");
-        FileUtil.writeObjectToFile(HUMAN_WRAPPER);
     }
 
     @Override
@@ -58,10 +53,6 @@ public abstract class AbstractEducationService implements EducationService {
                 "4. Show all\n");
 
         return new Scanner(System.in).nextInt();
-    }
-
-    public HumanWrapper getHumanWrapper() {
-        return (HumanWrapper) FileUtil.readObjectFromFile();
     }
 
 }

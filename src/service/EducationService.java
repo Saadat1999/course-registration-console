@@ -1,7 +1,7 @@
 package service;
 import entity.Human;
-import service.proxyServices.StudentServiceProxy;
-import service.proxyServices.TeacherServiceProxy;
+import service.proxy.StudentService$Proxy;
+import service.proxy.TeacherService$Proxy;
 
 import java.util.Scanner;
 
@@ -32,7 +32,7 @@ public interface EducationService {
         executeSelectedMenu(selectedMenu);
     }
 
-    static EducationService chooseService() {
+    static EducationService chooseService(boolean save) {
         System.out.println("Please enter the option:\n"+
                 "1. Student\n"+
                 "2. Teacher\n"+
@@ -40,9 +40,9 @@ public interface EducationService {
 
         int index = new Scanner(System.in).nextInt();
         if(index==1) {
-            return ObjectCreator.checkStudent(); // call invokes proxy service which has private object of real service inside
+            return new StudentService$Proxy(new StudentService());
         } else if(index==2) {
-            return ObjectCreator.checkTeacher();
+            return new TeacherService$Proxy(new TeacherService());
         } else if(index==3) {
             System.out.println("Exited");
             System.exit(1);
