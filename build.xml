@@ -30,7 +30,7 @@
         <mkdir dir="${jar.dir}"/>
         <jar destfile="${jar.dir}/${jar.name}" basedir="${bin.dir}">
             <manifest>
-                <attribute name="Main-Class" value="Main"/>
+                <attribute name="streams.Main-Class" value="streams.Main"/>
             </manifest>
         </jar>
         <echo>JAR file created: ${jar.dir}/${jar.name}</echo>
